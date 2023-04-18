@@ -12,3 +12,8 @@ class ShortestRouteController:
         self.source_location = None
         self.destination_location = None
         self.model = Methodology()
+
+    def get_shortest_route(self, source, destination):
+        self.source_location, _ = ox.get_nearest_node(self.graph, point=source, return_dist=True)
+        self.destination_location, _ = ox.get_nearest_node(self.graph, point=destination, return_dist=True)
+        self.shortest_route = nx.shortest_path(self.graph, self.source_location, self.destination_location, weight=LENGTH)
