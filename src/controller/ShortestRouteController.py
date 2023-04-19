@@ -1,3 +1,5 @@
+import networkx as nx
+import osmnx as ox
 from src.model.methodology import Methodology
 
 class ShortestRouteController:
