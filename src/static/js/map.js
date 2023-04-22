@@ -70,3 +70,20 @@ google.maps.event.addListener(autocomplete, 'place_changed', function () {
   });
 }
 
+
+function validateForm(){
+  var start = document.getElementById("sourceLoc").value;
+  var end = document.getElementById("destLoc").value;
+
+  if(start==""){
+    window.alert("Please enter the Start Location.");
+    return false;
+  }
+
+  if(end==""){
+    window.alert("Please enter the End Location.");
+    return false;
+  }
+  return true;
+}
+
