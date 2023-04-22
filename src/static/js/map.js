@@ -69,3 +69,4 @@ google.maps.event.addListener(autocomplete, 'place_changed', function () {
   map.setZoom(zoom > 15 ? 15 : zoom);
   });
 }
+
