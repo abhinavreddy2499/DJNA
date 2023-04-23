@@ -87,3 +87,17 @@ function validateForm(){
   return true;
 }
 
+
+function setRouteStatistics(distance, elevation) {
+  distance = Math.round((distance/1609.344) * 100) / 100;
+  elevation = Math.round(elevation * 100) / 100;
+  const routeStats =
+      "<strong>Total Distance:</strong><label style='text-align:center'> " +
+      distance +
+      " miles" +
+      "</label><br><strong>Elevation Gain:</strong><label style='text-align:center'> " +
+      elevation +
+      " metres" +
+      "</label>";
+      document.getElementById("computedResults").innerHTML = routeStats;
+}
