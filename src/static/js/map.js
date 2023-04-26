@@ -101,3 +101,7 @@ function setRouteStatistics(distance, elevation) {
       "</label>";
       document.getElementById("computedResults").innerHTML = routeStats;
 }
+
+function resetRouteStatistics() {
+  document.getElementById("computedResults").innerHTML = "";
+}
