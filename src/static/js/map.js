@@ -119,6 +119,49 @@ function submit(){
 }
 
 
+
+
+function showPathOnMap(startLocation, endLocation, pathCoordinates, distance, elevation){
+  const waypoints = getWaypoints(pathCoordinates);
+  const req = {
+                  origin: getLatLng(startLocation),
+                  destination: getLatLng(endLocation),
+                  waypoints: waypoints,
+                  travelMode: 'WALKING'
+                };
+
+  directionsService.route(req, function(response, status) {
+    if (status === 'OK') {
+      directionsDisplay.setDirections(response);
+      setRouteStatistics(distance, elevation);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+
+}
+
+
+
+function getWaypoints(pathCoordinates) {
+  const waypoints = [];
+
+  for (let i = 3; i < pathCoordinates.length - 3; i++) {
+    const waypoint = {
+      location: getLatLng(pathCoordinates[i]),
+      stopover: false,
+    };
+
+    waypoints.push(waypoint);
+  }
+
+  return waypoints;
+}
+
+function getLatLng(coordinates) {
+  return new google.maps.LatLng(coordinates[0], coordinates[1]);
+}
+
 function validateForm(){
   var start = document.getElementById("sourceLoc").value;
   var end = document.getElementById("destLoc").value;
