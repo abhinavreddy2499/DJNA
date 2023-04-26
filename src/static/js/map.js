@@ -70,6 +70,54 @@ google.maps.event.addListener(autocomplete, 'place_changed', function () {
   });
 }
 
+function removeMarker() {
+  markers.get('start').setMap(null);
+  markers.get('end').setMap(null);
+  markers.clear();
+  map.setCenter({lat:42.3732, lng:-72.5199});
+  map.setZoom(13);
+}
+
+function removePathFromMap(){
+  //directionsDisplay.setDirections({routes: []});
+  directionsDisplay.setMap(null);
+  directionsDisplay.setPanel(null);
+  directionsService = new google.maps.DirectionsService;
+  directionsDisplay = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+      strokeColor: "red"
+    }
+  });
+  directionsDisplay.setMap(map);
+}
+
+function reset() {
+    removeMarker();
+    removePathFromMap();
+    resetRouteStatistics();
+    document.getElementById("userDataForm").reset();
+}
+
+function submit(){
+  if(!validateForm()){
+    return;
+  }
+  $.get("http://127.0.0.1:5000/"+ encodeURIComponent($("#sourceLoc").val()) + ":"
+  + encodeURIComponent($("#destLoc").val()) + ":"
+  + encodeURIComponent($("#max_percent").val()) + ":"
+  + encodeURIComponent($("#elevation").val())).done(function (data) {
+   const startLocation = data.origin;
+   const endLocation = data.des
+   const path = data.path;
+   const totalDistance = data.dis;
+   const elevation = data.elev;
+
+    for(var i =0; i < path.length; i++) {
+        showPathOnMap(startLocation, endLocation, path[i], totalDistance, elevation);
+    }
+  })
+}
+
 
 function validateForm(){
   var start = document.getElementById("sourceLoc").value;
