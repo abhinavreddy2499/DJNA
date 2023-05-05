@@ -13,6 +13,7 @@ EMPTY = "empty"
 LENGTH = "length"
 ELEVATION_GAIN = "elevation_gain"
 
+
 class ElevationRouteController:
     """
     This class is used to find the route with the mentioned elevation
@@ -33,6 +34,45 @@ class ElevationRouteController:
         self.path_for_elevation = None
         self.scaling_factor = 100
         self.algorithm_model = Methodology()
+
+    def get_route_with_elevation(self):
+
+        if self.strategy_for_elevation == MINIMIZE:
+            min_or_max = 1
+        else:
+            min_or_max = -1
+
+        self.elevation_route = nx.shortest_path(self.graph, source=self.source_location,
+                                                target=self.destination_location,
+                                                weight=LENGTH)
+        while self.scaling_factor < 10000:
+            elevation_path = self.calculate_elevation_for_the_path(self.graph, source=self.source_location,
+                                                                   destination=self.destination_location,
+                                                                   weight=lambda u, v, d: math.exp(min_or_max * d[0][LENGTH] * (
+                                                                           d[0]['grade'] + d[0]['grade_abs']) / 2)
+                                                                                          + math.exp(
+                                                                       (1 / self.scaling_factor) * d[0][LENGTH]))
+
+            elevation_distance = sum(ox.utils_graph.get_route_edge_attributes(self.graph, elevation_path, LENGTH))
+            elevation_gain = self.algorithm_model.get_cost_of_route(self.graph, elevation_path, ELEVATION_GAIN)
+            if elevation_distance <= self.maximum_limit_for_route * self.shortest_distance and \
+                    min_or_max * elevation_gain <= min_or_max * self.gain_for_elevation:
+                self.elevation_route = elevation_path
+                self.gain_for_elevation = elevation_gain
+            self.scaling_factor = self.scaling_factor * 5
+
+        # Configure the path model - setting appropriate attributes
+        path_model = Route()
+        path_model.set_scheme(str(self.elevation_route_flag))
+        path_model.set_elevation_increase(
+            self.algorithm_model.get_cost_of_route(self.graph, self.elevation_route, ELEVATION_GAIN))
+        path_model.set_elevation_decrease(0)
+        path_model.set_route([[self.graph.nodes[route_node]['x'], self.graph.nodes[route_node]['y']]
+                              for route_node in self.elevation_route])
+        path_model.set_length(sum(ox.utils_graph.get_route_edge_attributes(self.graph, self.elevation_route, LENGTH)))
+        path_model.set_enable_value(2)
+
+        return path_model
 
     @staticmethod
     def calculate_elevation_for_the_path(graph, source, destination, weight):
