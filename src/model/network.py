@@ -15,6 +15,18 @@ class Network:
         self.loadedmap = os.path.exists(self.loaded_map)
         self.N = None
 
+    def final_point_calculated_distance(self, final_location):
+        """The graph is returned with the distance from the destination node for each node within it"""
+        final_point = self.N.nodes[ox.get_nearest_node(self.N, point=final_location)]
+        for point, loc in self.N.nodes(data=True):
+            final_longitude = final_point['y']
+            final_latitude = final_point['x']
+            point_longitude = self.N.nodes[point]['y']
+            point_latitude = self.N.nodes[point]['x']
+            loc['dist_from_dest'] = self.calculated_dist(point_latitude, point_longitude, final_latitude,
+                                                         final_longitude)
+        return self.N
+
     @staticmethod
     def calculated_dist(latitude_first, logitute_first, latitude_second, longitude_second):
         """The function returns the distance calculated between the provided coordinates"""
