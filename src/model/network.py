@@ -15,6 +15,20 @@ class Network:
         self.loadedmap = os.path.exists(self.loaded_map)
         self.N = None
 
+    def loading_network(self, final_point):
+        """Returns the Network"""
+        if not self.loadedmap:
+            print("Loading the Map")
+            self.N = ox.graph_from_point(self.default_location, dist=20000, network_type='walk')
+
+            self.N = ox.add_node_elevations(self.N, api_key=self.api_key_ofmaps)
+            pkl.dump(self.N, open(self.loaded_map, "wb"))
+            print("Saved the Map")
+        else:
+            self.N = pkl.load(open(self.loaded_map, "rb"))
+            self.N = ox.add_edge_grades(self.N)
+        return self.final_point_calculated_distance(final_point)
+
     def final_point_calculated_distance(self, final_location):
         """The graph is returned with the distance from the destination node for each node within it"""
         final_point = self.N.nodes[ox.get_nearest_node(self.N, point=final_location)]
