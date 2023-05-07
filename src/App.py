@@ -22,6 +22,7 @@ logger.addHandler(file_handler)
 # Log some messages
 logger.info('App has been initialized. ')
 
+
 gmaps = googlemaps.Client(key='AIzaSyCWJM4j3_evBJPCGMOzedNDpndm6ee9oh8')
 
 @app.route("/")
