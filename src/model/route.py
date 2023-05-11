@@ -34,3 +34,69 @@ class Route(Viewing):
         """starting position is set"""
         self.start_point = start_point
         self.new_value()
+
+    def get_length(self):
+        """length is obtained"""
+        return self.length
+
+    def set_length(self, length):
+        """length is set"""
+        self.length = length
+        self.new_value()
+
+    def record(self, view):
+        """record an viewer"""
+        self.viewers.add(view)
+
+    def delete(self, view):
+        """delete a viewer"""
+        self.viewers.remove(view)
+
+    def get_scheme(self):
+        """algorithm used is obtained"""
+        return self.scheme
+
+    def set_scheme(self, scheme):
+        """algorithm used is set."""
+        self.scheme = scheme
+        self.new_value()
+
+    def get_elevation_increase(self):
+        """elevation increase is obtained"""
+        return self.increase
+
+    def get_elevation_decrease(self):
+        """elevation decrease is obtained"""
+        return self.decrease
+
+    def set_elevation_increase(self, increase):
+        """Elevation increase is set."""
+        self.increase = increase
+        self.new_value()
+
+    def set_elevation_decrease(self, decrease):
+        """elevation drop is set."""
+        self.drop = decrease
+        self.new_value()
+
+    def get_route(self):
+        """route is obtained"""
+        return self.route
+
+    def set_route(self, route):
+        """route is set"""
+        self.path = route
+        self.new_value()
+
+    def get_enable_value(self):
+        """enable_value route is obtained"""
+        return self.enable_value
+
+    def set_enable_value(self, enable_value):
+        """enable_value is set"""
+        self.enable_value = enable_value
+
+    def new_value(self):
+        """Any time a value is modified, let all viewers know."""
+        for i in self.viewers:
+            i.update(self)
