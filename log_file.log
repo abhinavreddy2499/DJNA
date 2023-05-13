@@ -1,0 +1,16 @@
+2023-05-22 06:09:59,799 - src.App - INFO - App has been initialized. 
+2023-05-22 06:09:59,799 - src.App - INFO - App has been initialized. 
+2023-05-22 06:10:02,913 - src.App - INFO - App has been initialized. 
+2023-05-22 06:10:34,936 - src.App - INFO - Request received for parameters: Source = Integrative Learning Center, North Pleasant Street, Amherst, MA, USA, Destination = Sugarloaf Estates, River Road, Sunderland, MA, USA, Max percent : 100, min_max_elevation_gain : max
+2023-05-22 06:11:41,642 - src.App - INFO - App has been initialized. 
+2023-05-22 06:11:44,461 - src.App - INFO - Request received for parameters: Source = Integrative Learning Center, North Pleasant Street, Amherst, MA, USA, Destination = Sugarloaf Estates, River Road, Sunderland, MA, USA, Max percent : 100, min_max_elevation_gain : max
+2023-05-22 06:12:26,415 - src.App - INFO - Request received for parameters: Source = Integrative Learning Center, North Pleasant Street, Amherst, MA, USA, Destination = Sugarloaf Estates, River Road, Sunderland, MA, USA, Max percent : 100, min_max_elevation_gain : max
+2023-05-22 06:17:20,183 - src.App - INFO - App has been initialized. 
+2023-05-22 06:17:20,183 - src.App - INFO - App has been initialized. 
+2023-05-22 06:19:06,651 - src.App - INFO - App has been initialized. 
+2023-05-22 06:19:06,659 - src.App - INFO - App has been initialized. 
+2023-05-22 06:19:23,652 - src.App - INFO - Request received for parameters: Source = Integrative Learning Center, North Pleasant Street, Amherst, MA, USA, Destination = Sugarloaf Estates, River Road, Sunderland, MA, USA, Max percent : 100, min_max_elevation_gain : max
+2023-05-22 06:19:25,811 - src.App - INFO - Path coordinates : [], len(path coordinates) : 0
+2023-05-22 06:19:30,575 - src.App - INFO - Request received for parameters: Source = Integrative Learning Center, North Pleasant Street, Amherst, MA, USA, Destination = Sugarloaf Estates, River Road, Sunderland, MA, USA, Max percent : 145, min_max_elevation_gain : max
+2023-05-22 06:19:32,629 - src.App - INFO - Path coordinates : [], len(path coordinates) : 0
+2023-05-22 06:19:53,204 - src.App - INFO - App has been initialized. 
