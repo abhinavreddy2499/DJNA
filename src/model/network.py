@@ -3,6 +3,7 @@ import osmnx as ox
 import numpy as np
 import os
 
+
 class Network:
     """The class provides the necessary tools for constructing a Network using elevation data that is specific to a
     selected location"""
