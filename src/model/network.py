@@ -2,6 +2,7 @@ import pickle as pkl
 import osmnx as ox
 import numpy as np
 import os
+import logging
 
 
 class Network:
@@ -19,12 +20,12 @@ class Network:
     def loading_network(self, final_point):
         """Returns the Network"""
         if not self.loadedmap:
-            print("Loading the Map")
+            logging.info("Loading the Map")
             self.N = ox.graph_from_point(self.default_location, dist=20000, network_type='walk')
 
             self.N = ox.add_node_elevations(self.N, api_key=self.api_key_ofmaps)
             pkl.dump(self.N, open(self.loaded_map, "wb"))
-            print("Saved the Map")
+            logging.info("Saved the Map")
         else:
             self.N = pkl.load(open(self.loaded_map, "rb"))
             self.N = ox.add_edge_grades(self.N)
