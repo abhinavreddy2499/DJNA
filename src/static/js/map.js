@@ -101,7 +101,6 @@ function removeMarker() {
 }
 
 function removePathFromMap(){
-  //directionsDisplay.setDirections({routes: []});
   directionsDisplay.setMap(null);
   directionsDisplay.setPanel(null);
   directionsService = new google.maps.DirectionsService;
