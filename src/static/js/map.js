@@ -1,4 +1,4 @@
-function initAutocomplete() {
+unction initAutocomplete() {
   var directionsRenderer = new google.maps.DirectionsRenderer();
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer({
@@ -22,7 +22,7 @@ function initAutocomplete() {
   var sourceLoc = document.getElementById("sourceLoc");
   var destLoc = document.getElementById("destLoc");
   addMarkerOnMap(sourceLoc, map, markers, bounds, 'start');
-  addMarkerOnMap(destLoc, map, markers, bounds, 'destination');
+  addMarkerOnMap(destLoc, map, markers, bounds, 'end');
 }
 
 function addMarkerOnMap(input, map, markers, bounds, key) {
