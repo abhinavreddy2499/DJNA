@@ -13,7 +13,7 @@ ELeNA software has a dependencies of certain packages and their specific version
 
 ### Os type :  Windows
 
-python3 -m venv .venv
+python3 -m venv venv
 
 .\venv\scripts\activate
 

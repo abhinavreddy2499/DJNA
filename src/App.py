@@ -25,7 +25,6 @@ logger.info('App has been initialized. ')
 
 gmaps = googlemaps.Client(key='AIzaSyCWJM4j3_evBJPCGMOzedNDpndm6ee9oh8')
 
-
 @app.route("/")
 def home():
     return render_template("index.html")
