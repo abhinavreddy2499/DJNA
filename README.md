@@ -68,7 +68,7 @@ set FLASK_ENV=development
 ## Documentation
 
 Please consult the provided URL for a concise documentation : 
-*Insert report.pdf url link*
+*https://github.com/abhinavreddy2499/DJNA/blob/main/520-final%20project%20report.pdf*
 
 ## Demo 
 
