@@ -70,6 +70,28 @@ google.maps.event.addListener(autocomplete, 'place_changed', function () {
   });
 }
 
+
+
+function showPathOnMap(startLocation, endLocation, pathCoordinates, distance, elevation){
+  const waypoints = getWaypoints(pathCoordinates);
+  const req = {
+                  origin: getLatLng(startLocation),
+                  destination: getLatLng(endLocation),
+                  waypoints: waypoints,
+                  travelMode: 'WALKING'
+                };
+
+  directionsService.route(req, function(response, status) {
+    if (status === 'OK') {
+      directionsDisplay.setDirections(response);
+      setRouteStatistics(distance, elevation);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+
+}
+
 function removeMarker() {
   markers.get('sourceLoc').setMap(null);
   markers.get('destLoc').setMap(null);
@@ -125,6 +147,7 @@ function submit(){
   })
 }
 
+<<<<<<< HEAD
 function showPathOnMap(startLocation, endLocation, pathCoordinates, distance, elevation){
   const waypoints = getWaypoints(pathCoordinates);
   const req = {
@@ -145,6 +168,43 @@ function showPathOnMap(startLocation, endLocation, pathCoordinates, distance, el
 
 }
 
+=======
+function validateForm(){
+  var start = document.getElementById("sourceLoc").value;
+  var end = document.getElementById("destLoc").value;
+
+  if(start==""){
+    window.alert("Please enter the Start Location.");
+    return false;
+  }
+
+  if(end==""){
+    window.alert("Please enter the End Location.");
+    return false;
+  }
+  return true;
+}
+
+function setRouteStatistics(distance, elevation) {
+  distance = Math.round((distance/1609.344) * 100) / 100;
+  elevation = Math.round(elevation * 100) / 100;
+  const routeStats =
+      "<strong>Total Distance:</strong><label style='text-align:center'> " +
+      distance +
+      " miles" +
+      "</label><br><strong>Elevation Gain:</strong><label style='text-align:center'> " +
+      elevation +
+      " metres" +
+      "</label>";
+      document.getElementById("computedResults").innerHTML = routeStats;
+}
+
+function resetRouteStatistics() {
+  document.getElementById("computedResults").innerHTML = "";
+}
+
+
+>>>>>>> b906ef274764d323355be94229bb1f0f74c54525
 function getWaypoints(pathCoordinates) {
   const waypoints = [];
 
@@ -160,6 +220,7 @@ function getWaypoints(pathCoordinates) {
   return waypoints;
 }
 
+<<<<<<< HEAD
 
 function validateForm(){
   var start = document.getElementById("sourceLoc").value;
@@ -195,3 +256,8 @@ function setRouteStatistics(distance, elevation) {
 function resetRouteStatistics() {
   document.getElementById("computedResults").innerHTML = "";
 }
+=======
+function getLatLng(coordinates) {
+  return new google.maps.LatLng(coordinates[0], coordinates[1]);
+}
+>>>>>>> b906ef274764d323355be94229bb1f0f74c54525
