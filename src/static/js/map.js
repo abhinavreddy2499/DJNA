@@ -21,8 +21,8 @@ function initAutocomplete() {
   // Create the search box and link it to the UI element.
   var sourceLoc = document.getElementById("sourceLoc");
   var destLoc = document.getElementById("destLoc");
-  addMarkerOnMap(sourceLoc, map, markers, bounds, 'start');
-  addMarkerOnMap(destLoc, map, markers, bounds, 'destination');
+  addMarkerOnMap(sourceLoc, map, markers, bounds, 'sourceLoc');
+  addMarkerOnMap(destLoc, map, markers, bounds, 'destLoc');
 }
 
 function addMarkerOnMap(input, map, markers, bounds, key) {
@@ -71,8 +71,8 @@ google.maps.event.addListener(autocomplete, 'place_changed', function () {
 }
 
 function removeMarker() {
-  markers.get('start').setMap(null);
-  markers.get('end').setMap(null);
+  markers.get('sourceLoc').setMap(null);
+  markers.get('destLoc').setMap(null);
   markers.clear();
   map.setCenter({lat:42.3732, lng:-72.5199});
   map.setZoom(13);
@@ -98,7 +98,14 @@ function reset() {
     document.getElementById("userDataForm").reset();
 }
 
+
+function getLatLng(coordinates) {
+  return new google.maps.LatLng(coordinates[0], coordinates[1]);
+}
+
+
 function submit(){
+  
   if(!validateForm()){
     return;
   }
@@ -117,9 +124,6 @@ function submit(){
     }
   })
 }
-
-
-
 
 function showPathOnMap(startLocation, endLocation, pathCoordinates, distance, elevation){
   const waypoints = getWaypoints(pathCoordinates);
@@ -141,8 +145,6 @@ function showPathOnMap(startLocation, endLocation, pathCoordinates, distance, el
 
 }
 
-
-
 function getWaypoints(pathCoordinates) {
   const waypoints = [];
 
@@ -158,21 +160,18 @@ function getWaypoints(pathCoordinates) {
   return waypoints;
 }
 
-function getLatLng(coordinates) {
-  return new google.maps.LatLng(coordinates[0], coordinates[1]);
-}
 
 function validateForm(){
   var start = document.getElementById("sourceLoc").value;
   var end = document.getElementById("destLoc").value;
 
   if(start==""){
-    window.alert("Please enter the Start Location.");
+    window.alert("Please enter the Start Location !");
     return false;
   }
 
   if(end==""){
-    window.alert("Please enter the End Location.");
+    window.alert("Please enter the End Location !");
     return false;
   }
   return true;
