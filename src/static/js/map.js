@@ -1,4 +1,4 @@
-unction initAutocomplete() {
+function initAutocomplete() {
   var directionsRenderer = new google.maps.DirectionsRenderer();
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer({
