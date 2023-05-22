@@ -20,7 +20,7 @@ def Test(value=""):
                 function(*args, **kwargs)
                 logging.info("Test case was successful")
             except Exception as error:
-                logging(error)
+                logging.info(error)
 
         return condition
 
