@@ -72,6 +72,6 @@ Please consult the provided URL for a concise documentation :
 
 ## Demo 
 
-Please navigate to the mentioned url to witness a bried demo of our project : 
-*Insert url link*
+Please navigate to the mentioned url to witness a demo of our project : 
+*https://drive.google.com/file/d/1MFikw9q5wP6scjaCO_eA7e_cA2xYkS--/view?usp=share_link*
 
